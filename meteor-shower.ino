@@ -1,14 +1,15 @@
 #include <FastLED.h>
-#define NUM_LEDS 42 // number of LED segments in strip
-#define DATA_PIN 6 // data pin you're using
+#define NUM_LEDS 42
+#define DATA_PIN 6
 
 CRGB leds[NUM_LEDS];
 
 void setup() {
-  // Serial.begin(9600); // required for logging to serial monitor
+  // Serial.begin(9600);
   FastLED.addLeds<WS2811, DATA_PIN, GRB>(leds, NUM_LEDS).setCorrection(TypicalLEDStrip);
   // limit my draw to 5W
   FastLED.setMaxPowerInMilliWatts(500);
+  FastLED.clear();
   FastLED.show();
 
   // // for shooting star
@@ -47,9 +48,9 @@ void randomMeteor() {
   };
 
   // green, red, blue, meteorSize, tailDecay, randomDecay, speedDelay
-  meteorRain(colors[randomColor][0], colors[randomColor][1], colors[randomColor][2], 1, 420, true, random(1, 15));
+  meteorRain(colors[randomColor][0], colors[randomColor][1], colors[randomColor][2], 1, 100, true, random(1, 30));
 
-  int randTime = random(4, 12);
+  int randTime = random(5, 30);
   delay(randTime * 1000);
 }
 
